@@ -1,5 +1,150 @@
-topic
+WEB TECHNOLOGY THEORY PHP ASSIGNMENT 1
 
+1.	Discuss the concept of frames in HTML using suitable examples.
+Frameset Element holds one or more frame element. Each frame element can hold a separate document.
+<html>
+    <head>
+        <title>Example of HTML Frames using row attribute</title>
+    </head> 
+    <frameset rows = "20%, 60%, 20 %">
+        <frame src ="logo.html" />
+        <frame src ="demo.png" />
+        <frame src ="footer.html” />
+    </frameset>
+</html>                    
+2.	What is meant by session management in PHP? Create a login and logout session in PHP.
+A session creates a file in the temporary directory on the server where registered session variables and their values are stored. This data will be available to all the pages of the website for that visit.
+Session stores sensitive user data.
+Session.php file content:
+<?php
+//verify username and password
+session_start();
+$_SESSION['username']="Shikhar";
+$_SESSION['id']=1;
+echo "WE Have Saved Your Session!!"
+?>
+Getsession,php file content:
+<?php
+session_start();
+if(isset($_SESSION['username']))
+{
+    echo $_SESSION['username']." "."You are Logged IN!<br>";
+    echo "Your ID is:".$_SESSION['id'];
+}
+else{
+    echo "You are NOT Logged IN!";
+}
+?>
+Destroysession.php file content:
+<?php
+session_start();
+session_unset();
+session_destroy();
+echo "You Have been Logged OUT!!"
+?>
+3.	Illustrate the File Handling Operations in PHP through a suitable example.
+PHP File System allows us to create file, read file line by line, read file character by character, write file, append file, delete file and close file.
+Code:
+The PHP fopen() function is used to open a file. Example
+<?php  
+$handle = fopen("c:\\folder\\file.txt", "r");  
+?>  
+PHP Close File - fclose() : The PHP fclose() function is used to close an open file pointer.
+Syntax: bool fclose ( resource $handle )  
+Example
+<?php  
+fclose($handle);  
+?>  
+PHP Read File - fread() : The PHP fread() function is used to read the content of the file. It accepts two arguments: resource and file size.
+Syntax: string fread ( resource $handle , int $length )  
+Example
+<?php    
+$filename = "c:\\myfile.txt";    
+$handle = fopen($filename, "r");//open file in read mode    
+$contents = fread($handle, filesize($filename));//read file    
+ echo $contents;//printing data of file  
+fclose($handle);//close file    
+?>    
+4.	Define a class Student in PHP with the following specifications:
+Private data members of class student are admno, stuname, engmarks, mathmarks, sciencemarks, total.
+Public member function of class student
+•	ctotal() - a function to calculate eng + math + science with return type.
+•	Takedata() - Function to accept values for admno, sname, eng, science and invoke ctotal() to calculate total.
+•	Showdata() - Function to display all the data members on the screen.
+Create object and call suitable function to fetch the marks, calculate the total and display the calculated value. 
+<?php
+class student
+{
+    private $admno;
+    private $stuname;
+    private $engmarks;
+    private $mathmarks;
+    private $sciencemarks;
+    private $total;
+    public function ctotal()
+    {
+        $this->total = $this->engmarks + $this->mathmarks + $this->sciencemarks;
+        return $this->total;
+    }
+    public function Takedata()
+    {
+        $this->admno = $_POST['admno'];
+        $this->stuname = $_POST['stuname'];
+        $this->engmarks = $_POST['engmarks'];
+        $this->mathmarks = $_POST['mathmarks'];
+        $this->sciencemarks = $_POST['sciencemarks'];
+        $this->ctotal();
+    }
+    public function Showdata()
+    {
+        echo "Admission Number : ".$this->admno."<br>";
+        echo "Student Name : ".$this->stuname."<br>";
+        echo "English Marks : ".$this->engmarks."<br>";
+        echo "Maths Marks : ".$this->mathmarks."<br>";
+        echo "Science Marks : ".$this->sciencemarks."<br>";
+        echo "Total Marks : ".$this->total."<br>";
+    }
+}
+$obj = new student();
+$obj->Takedata();
+$obj->Showdata();
+?>
+<form action="" method="POST">
+     <input type="text" name="admno"><br>
+    <input type="text" name="stuname"><br>
+     <input type="text" name="engmarks"><br>
+     <input type="text" name="mathmarks"><br>
+     <input type="text" name="sciencemarks"><br>
+     <button type="submit" name="submit">PASS VALUES</button>
+</form>
 
+5.	Implement the below given flowchart in PHP
 
+ 
+
+<?php
+    echo "<form method=POST>";
+       echo "enter array elements<br>";
+       for($i=0; $i<5; $i++)
+       {
+        echo "<input type=text name=num$i >";
+       }
+       echo"<input type=submit value=submit >";
+   echo "</form>";
+   $arr=array();
+      if(isset($_POST['num0']))
+   {
+    for($i=0; $i<5; $i++)
+    {
+        $arr[$i]=$_POST['num'.$i];
+    }
+   }
+   $max=0;
+   for($i=0; $i<5; $i++)
+   {
+       if($arr[$i]>$max)
+          $max=$arr[$i];
+   }
+     echo $max." is the Greatest";
+?>
 
